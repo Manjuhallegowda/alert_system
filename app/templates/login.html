@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Login</h1>
+    </header>
+    <main>
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class="flashes">
+            {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <!-- Login form -->
+        <form method="post" action="{{ url_for('main.login') }}">
+            {{ form.hidden_tag() }}
+            <label for="email">Email:</label>
+            {{ form.email(class="form-control") }}
+            <label for="password">Password:</label>
+            {{ form.password(class="form-control") }}
+            <label for="remember">Remember Me:</label>
+            {{ form.remember() }}
+            {{ form.submit(class="btn btn-primary") }}
+        </form>
+        <p>Don't have an account? <a href="{{ url_for('main.register') }}">Register here</a></p>
+    </main>
+    <footer>
+        <p>&copy; 2024 Weather Alert System</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Register</h1>
+    </header>
+    <main>
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class="flashes">
+            {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <!-- Registration form -->
+        <form method="post" action="{{ url_for('main.register') }}">
+            {{ form.hidden_tag() }}
+            <label for="username">Username:</label>
+            {{ form.username(class="form-control") }}
+            <label for="email">Email:</label>
+            {{ form.email(class="form-control") }}
+            <label for="password">Password:</label>
+            {{ form.password(class="form-control") }}
+            <label for="confirm_password">Confirm Password:</label>
+            {{ form.confirm_password(class="form-control") }}
+            <label for="phone_number">Phone Number:</label>
+            {{ form.phone_number(class="form-control") }}
+            {{ form.submit(class="btn btn-primary") }}
+        </form>
+        <p>Already have an account? <a href="{{ url_for('main.login') }}">Login here</a></p>
+    </main>
+    <footer>
+        <p>&copy; 2024 Weather Alert System</p>
+    </footer>
+</body>
+</html>

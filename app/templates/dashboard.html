@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Dashboard</h1>
+    </header>
+    <main>
+        <h2>Welcome, {{ current_user.username }}!</h2>
+
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class="flashes">
+            {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <!-- Form for enabling/disabling SMS alerts -->
+        <form method="post" action="{{ url_for('main.dashboard') }}">
+            <label for="enable_sms">Enable SMS Alerts:</label>
+            <input type="checkbox" id="enable_sms" name="enable_sms" {% if current_user.sms_enabled %}checked{% endif %}>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+
+        <a href="{{ url_for('main.logout') }}">Logout</a>
+    </main>
+    <footer>
+        <p>&copy; 2024 Weather Alert System</p>
+    </footer>
+</body>
+</html>
