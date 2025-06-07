@@ -17,6 +17,11 @@ This project is an Alert System designed to monitor specific conditions and trig
 - Backend: Python, Flask
 - Database: SQLite
 
+## Screenshot
+
+![Screenshot 2025-06-07 161636](https://github.com/user-attachments/assets/1ffb3425-3bf5-4419-97a9-88c72af857f7)
+
+
 ## License
 
 - This project is licensed under All Rights Reserved.
